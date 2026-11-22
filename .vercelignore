@@ -1,0 +1,11 @@
+venv/
+.venv/
+node_modules/
+.next/
+storage/
+uploads/
+*.sqlite
+*.sqlite3
+*.db
+__pycache__/
+.pytest_cache/

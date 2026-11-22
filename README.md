@@ -73,3 +73,31 @@ npm.cmd run build
   projects, persistence, authentication, and mobile application.
 - Provider keys are not configured by this repository and no paid API or hosting
   calls are made.
+
+## Deploying frontend and backend together on Vercel
+
+The repository uses Vercel Services: Next.js is the public frontend and FastAPI is
+a private backend in the same Vercel project. The browser calls same-origin
+`/api/*` routes, and `frontend/app/api/[...path]/route.ts` forwards those requests
+to the backend through Vercel's `BACKEND_URL` service binding.
+
+```powershell
+Set-Location "C:\Users\Sufyan-Khan\Desktop\my new project\nova-ai-studio"
+npx.cmd vercel@latest login
+npx.cmd vercel@latest link
+npx.cmd vercel@latest deploy
+```
+
+For a production deployment, use:
+
+```powershell
+npx.cmd vercel@latest --prod
+```
+
+Connect the GitHub repository in the Vercel dashboard to enable automatic preview
+and production deployments. In Project Settings, the repository root must remain
+the Nova project root because [vercel.json](./vercel.json) declares both services.
+
+The free Vercel Hobby tier may have execution, bandwidth, build, and file-storage
+limits. The current platform-independent baseline uses no database or hosted
+storage, and no paid API or hosting resource is created by the repository.
